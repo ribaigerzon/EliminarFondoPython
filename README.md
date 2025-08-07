@@ -45,7 +45,7 @@ python recortar_png.py
 📦 Versión ejecutable (Windows)
 También puedes descargar y ejecutar el archivo .exe sin necesidad de instalar Python. Descarga el ejecutable que se encuentra en mi Drive:
 
-https://drive.google.com/file/d/1eRFmSpQbG4I7MT11TklZMjz2TDlUI9yw/view?usp=sharing
+https://drive.google.com/file/d/1gvauAWnxFrbY4GR-1WGXUu6svOcGgOFx/view?usp=drive_link
 
 📷 Ejemplo visual
 
