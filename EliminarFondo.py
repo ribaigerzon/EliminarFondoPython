@@ -28,15 +28,23 @@ def seleccionar_carpeta_salida():
 def remover_fondo_y_guardar_png(ruta_entrada, carpeta_salida):
     try:
         if not ruta_entrada or not carpeta_salida:
-            print("⚠️ Proceso cancelado por el usuario.")
+            print("Proceso cancelado por el usuario.")
             return
 
         nombre_archivo = os.path.splitext(os.path.basename(ruta_entrada))[0] + "_sin_fondo.png"
         ruta_salida = os.path.join(carpeta_salida, nombre_archivo)
 
-        # Abrir y procesar imagen
+        # Abrir imagen
         input_image = Image.open(ruta_entrada)
-        output_image = remove(input_image)
+
+        # Se usa la función 'remove' con parámetros mejorados
+        # Habilitamos 'alpha_matting' para obtener bordes más limpios
+        output_image = remove(
+            input_image,
+            alpha_matting=True,
+            alpha_matting_foreground_threshold=240,
+            alpha_matting_background_threshold=10,
+        )
 
         # Guardar como PNG
         output_image.save(ruta_salida, format="PNG")
@@ -47,14 +55,15 @@ def remover_fondo_y_guardar_png(ruta_entrada, carpeta_salida):
 
 if __name__ == "__main__":
     root = tk.Tk()
-    root.withdraw()  # Oculta la ventana principal de tkinter
+    root.withdraw()
 
-    print("\n📸 Removedor de Fondo de Imágenes (con explorador gráfico)\n")
+    print("\n Removedor de Fondo de Imágenes (con explorador gráfico)\n")
 
     if messagebox.askyesno("Removedor de Fondo", "¿Deseas seleccionar una imagen para remover su fondo?"):
         ruta_entrada = seleccionar_imagen()
         carpeta_salida = seleccionar_carpeta_salida()
         remover_fondo_y_guardar_png(ruta_entrada, carpeta_salida)
     else:
-        print("🚫 Operación cancelada por el usuario.")
+        print("Operación cancelada por el usuario.")
+
 
